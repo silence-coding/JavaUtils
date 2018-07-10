@@ -1,10 +1,5 @@
 package http;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -13,6 +8,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -20,7 +16,21 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.ssl.TrustStrategy;
 import org.apache.http.util.EntityUtils;
+
+import javax.net.ssl.SSLContext;
+import java.io.File;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**Create By knagtian.poon  。引用https://blog.csdn.net/tianya3530/article/details/77337124
  * 须引入
@@ -37,12 +47,33 @@ import org.apache.http.util.EntityUtils;
  *             <version>4.5.5</version>
  *         </dependency>
  */
-public class HttpUtils {
-    private static final CloseableHttpClient httpclient = HttpClients.createDefault();
+public class HttpsUtils {
+    private static final CloseableHttpClient httpsclient = createSSLClientDefault();
     private static String  charset="utf-8";
     private static  String userAgent = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36";
     private static int socketTimeout=2000;
     private static int connectTimeout=2000;
+
+    public static CloseableHttpClient createSSLClientDefault(){
+        try {
+            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy(){
+                //信任所有
+                public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                    return true;
+                }
+            }).build();
+            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext);
+            return HttpClients.custom().setSSLSocketFactory(sslsf).build();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
+        return HttpClients.createDefault();
+    }
+
 
 
     /**参数直接附在url上
@@ -149,7 +180,7 @@ public class HttpUtils {
         httpPost.setConfig(requestConfig);
         try {
             // 执行post请求
-            response = httpclient.execute(httpPost);
+            response = httpsclient.execute(httpPost);
             // 得到entity
             HttpEntity entity = response.getEntity();
             // 得到字符串
@@ -177,7 +208,7 @@ public class HttpUtils {
             httpGet.setHeader("User-Agent", userAgent);
             RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(socketTimeout).setConnectTimeout(connectTimeout).build();//设置请求和传输超时时间
             httpGet.setConfig(requestConfig);
-            response = httpclient.execute(httpGet);
+            response = httpsclient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 result = EntityUtils.toString(entity,charset);
@@ -201,10 +232,10 @@ public class HttpUtils {
      * @param charset
      */
     public static void setCharset(String charset) {
-        HttpUtils.charset = charset;
+        HttpsUtils.charset = charset;
     }
     public static void setUserAgent(String userAgent) {
-        HttpUtils.userAgent = userAgent;
+        HttpsUtils.userAgent = userAgent;
     }
 
     /**
@@ -212,7 +243,7 @@ public class HttpUtils {
      * @param socketTimeout
      */
     public static void setSocketTimeout(int socketTimeout) {
-        HttpUtils.socketTimeout = socketTimeout;
+        HttpsUtils.socketTimeout = socketTimeout;
     }
 
     /**
@@ -220,6 +251,6 @@ public class HttpUtils {
      * @param connectTimeout
      */
     public static void setConnectTimeout(int connectTimeout) {
-        HttpUtils.connectTimeout = connectTimeout;
+        HttpsUtils.connectTimeout = connectTimeout;
     }
 }
