@@ -1,8 +1,8 @@
 package singleton;
 
-/**
+/**反射，序列化会破坏单例。枚举类实现可避免
  * 登记模式
- * 整合了一二的优点，推荐使用此方法建立单例
+ * 整合了一二的优点
  */
 public class Singleton3 {
 
