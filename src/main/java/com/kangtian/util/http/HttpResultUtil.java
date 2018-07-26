@@ -2,8 +2,8 @@ package com.kangtian.util.http;
 
 
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HttpResultUtil {
     private static Map<String,Object> successMap;
@@ -13,21 +13,22 @@ public class HttpResultUtil {
     private static final String DATA="data";
 
     static  {
-        successMap=new HashMap<String, Object>();
+        successMap=new ConcurrentHashMap<String, Object>();
         successMap.put(CODE,"0");
-        faileMap=new HashMap<String, String>();
+        faileMap=new ConcurrentHashMap<String, String>();
         faileMap.put(CODE,"-1");
     }
-    public static synchronized Map returnSuccess(String msg){
+    public static  Map returnSuccess(String msg){
         successMap.put(MSG,msg);
         return successMap;
+
     }
-    public static synchronized Map returnSuccess(String msg,Object data){
+    public static  Map returnSuccess(String msg,Object data){
         successMap.put(MSG,msg);
         successMap.put(DATA,data);
         return successMap;
     }
-    public static synchronized Map returnFaile(String msg){
+    public static  Map returnFaile(String msg){
         faileMap.put(MSG,msg);
         return faileMap;
     }
