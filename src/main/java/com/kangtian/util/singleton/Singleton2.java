@@ -1,4 +1,4 @@
-package singleton;
+package com.kangtian.util.singleton;
 
 /**反射，序列化会破坏单例。枚举类实现可避免
  * 饿汉式单例：
@@ -6,7 +6,7 @@ package singleton;
  * 缺点：类加载时就初始化，浪费内存。
  */
 public class Singleton2 {
-    private static singleton.Singleton2 instance=new Singleton2();
+    private static com.kangtian.util.singleton.Singleton2 instance=new Singleton2();
 
     //禁止实例
     private Singleton2(){

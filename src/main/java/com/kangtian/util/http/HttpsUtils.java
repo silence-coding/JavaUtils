@@ -1,4 +1,4 @@
-package http;
+package com.kangtian.util.http;
 
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;

@@ -1,4 +1,4 @@
-package singleton;
+package com.kangtian.util.singleton;
 
 /**
  * 可考虑改为Singleton3的枚举类，抗序列化，反射破坏

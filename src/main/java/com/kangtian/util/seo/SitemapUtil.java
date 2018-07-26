@@ -1,4 +1,4 @@
-package seo;
+package com.kangtian.util.seo;
 
 
 import org.dom4j.Document;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public  class SitemapUtil {
 
     //xml文件头xmlns属性值：例<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    private static String xmlns ="http://www.sitemaps.org/schemas/sitemap/0.9";
+    private static String xmlns ="com.kangtian.util.http://www.sitemaps.org/schemas/sitemap/0.9";
     //存放文件路径：可为/aaa/bbb/等，最后位必须带/符号
     private static final String filePath="E:/aa/";
     //private static final String filePath=System.getenv("SITE_MAP_PATH");//可通过环境变量拿

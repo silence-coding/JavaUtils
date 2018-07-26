@@ -1,4 +1,4 @@
-package singleton;
+package com.kangtian.util.singleton;
 
 /**反射，序列化会破坏单例。枚举类实现可避免
  * 懒汉式单例

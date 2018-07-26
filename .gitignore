@@ -1,7 +1,7 @@
-# Compiled class file
+# Compiled class com.kangtian.util.file
 *.class
 
-# Log file
+# Log com.kangtian.util.file
 *.log
 
 # BlueJ files
@@ -19,7 +19,7 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# virtual machine crash logs, see com.kangtian.util.http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.idea/*.xml
 /.idea/codeStyles/*.xml

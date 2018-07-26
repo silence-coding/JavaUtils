@@ -1,4 +1,4 @@
-package http;
+package com.kangtian.util.http;
 
 import java.io.File;
 import java.io.IOException;
