@@ -1,0 +1,3 @@
+1.在web.xml 配置
+2.直接调用CodeUtil 方法即可
+3.前端添加img标签，src 为web.xml 配置的路径<url-pattern>/Kaptcha</url-pattern>
