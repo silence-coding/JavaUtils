@@ -1,6 +1,6 @@
 package com.kangtian.util.file;
 
-import java.io.File;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -32,5 +32,22 @@ public class FileUtil {
 			}
 			file.delete();
 		}
+	}
+	public static String readFileToStr(String path){
+		StringBuffer stringBuffer=new StringBuffer();
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(path));
+		String line=	in.readLine();
+		while (line!=null){
+			stringBuffer.append(line);
+			line=in.readLine();
+		}
+		in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return stringBuffer.toString();
 	}
 }

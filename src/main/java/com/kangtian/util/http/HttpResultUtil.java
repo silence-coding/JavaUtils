@@ -12,25 +12,22 @@ public class HttpResultUtil {
     private static final String MSG="msg";
     private static final String DATA="data";
 
-    static  {
 
-
-    }
-    public static synchronized Map returnSuccess(String msg){
+    public static  Map returnSuccess(String msg){
         successMap=new HashMap<String, Object>();
         successMap.put(CODE,"0");
         successMap.put(MSG,msg);
         return successMap;
 
     }
-    public static synchronized Map returnSuccess(String msg,Object data){
+    public static  Map returnSuccess(String msg,Object data){
         successMap=new HashMap<String, Object>();
         successMap.put(CODE,"0");
         successMap.put(MSG,msg);
         successMap.put(DATA,data);
         return successMap;
     }
-    public static synchronized Map returnFaile(String msg){
+    public static  Map returnFaile(String msg){
         faileMap=new HashMap<String, String>();
         faileMap.put(CODE,"-1");
         faileMap.put(MSG,msg);

@@ -51,8 +51,8 @@ public class HttpsUtils {
     private static final CloseableHttpClient httpsclient = createSSLClientDefault();
     private static String  charset="utf-8";
     private static  String userAgent = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36";
-    private static int socketTimeout=2000;
-    private static int connectTimeout=2000;
+    private static int socketTimeout=2000;//超时时间
+    private static int connectTimeout=2000; //超时时间
 
     public static CloseableHttpClient createSSLClientDefault(){
         try {
