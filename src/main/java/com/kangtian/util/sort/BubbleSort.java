@@ -3,7 +3,7 @@ package com.kangtian.util.sort;
 /**
  * User: FIRE
  * Date: 2018/9/9
- * Description:
+ * Description:  O(n2)
  */
 public class BubbleSort {
     public static void sort(int [] arr){

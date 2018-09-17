@@ -3,9 +3,13 @@ package com.kangtian.util.sort;
 /**
  * User: FIRE
  * Date: 2018/9/9
- * Description:
+ * Description: O(nlog2n)
  */
 public class QuickSort {
+
+    public static void sort(int[] arr){
+            sort(arr, 0, arr.length-1);
+    }
     public static void sort(int[] arr,int s,int e){
         if (s<e) {
             int p = getPoit(arr, s, e);
