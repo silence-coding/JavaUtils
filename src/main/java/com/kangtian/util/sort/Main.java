@@ -27,9 +27,9 @@ public class Main {
 //        long start1=new Date().getTime();
 //        System.out.println(start1-end);
 //        isOrder(arr);printArr(arr);
-        SelectSort.sortSimple(arr);
+        QuickSort.sort(arr);
         printArr(arr);
-
+        isOrder(arr);
     }
 
 

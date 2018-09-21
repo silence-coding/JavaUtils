@@ -19,7 +19,7 @@ public class MinHeap extends Heap {
         len=arr.length;
         heap=new int[len];
         for (int i=0;i<len;i++) {
-                insert(arr[i]);
+            insert(arr[i]);
         }
     }
     public void insert(int num)  {
@@ -70,11 +70,5 @@ public class MinHeap extends Heap {
             swap(arr,i,end);
             i++;end--;
         }
-
-    }
-    public static void main(String[] args){
-        int [] arr= {5,6,8,9,7 ,7,15,17};
-       MaxHeap h = new MaxHeap(arr);
-       System.out.println(isHeap(h.heap));
     }
 }

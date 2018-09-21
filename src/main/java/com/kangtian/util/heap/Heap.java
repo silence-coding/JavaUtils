@@ -1,5 +1,9 @@
 package com.kangtian.util.heap;
 
+/**
+*堆是一组元素按照完全二叉树的形式存储在一个数组里面，并且在这个完全二叉树里面满足父节点和子节点的关系为
+ * Ki <= K2*i+1 且 Ki<= K2*i+2(或Ki >= K2*i+1 且 Ki >= K2*i+2) i = 0，1，2…， 的一种数据结构。
+ */
 public  class Heap {
     int size=0,len=16;double capacity=1.5;
     int [] heap;
@@ -52,13 +56,12 @@ public  class Heap {
             return is;
         if (arr[0]<arr[1])
         for(int i=(len-1)/2;i>=0;i--){
-            int k=i;
+            int k=i;//k对应树的根节点
             while(k*2+1<=len){
-                int j=2*k+1;
-
+                int j=2*k+1;//对应子节点
                     if(j<len&&arr[j]>arr[j+1])
                         j++;
-                if(arr[k]>arr[j]){
+                if(arr[k]>arr[j]){//判断根节点是否大于子节点，如果是，则不满足小堆
                   is=false;i=-1;
                     break;
                 }
@@ -74,7 +77,7 @@ public  class Heap {
                     int j=2*k+1;
                     if(j<len&&arr[j]>arr[j+1])
                         j++;
-                    if(arr[k]<arr[j]){
+                    if(arr[k]<arr[j]){//判断根节点是否小于父节点，如果是，则不满足大堆
                         is=false;i=-1;
                         break;
                     }else{

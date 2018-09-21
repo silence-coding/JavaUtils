@@ -1,6 +1,5 @@
 package com.kangtian.util.heap;
 
-import com.kangtian.util.sort.Main;
 
 public class MaxHeap extends Heap {
     public MaxHeap(){
@@ -38,10 +37,12 @@ public class MaxHeap extends Heap {
         heap[i] = num;
         size++;
     }
+
+    //调整数组，使其保持堆的性质
     @Override
     public  void adjust(int heap[] ,int end){
         for(int i=(end-1)/2;i>=0;i--){
-            int k=i;
+            int k=i;//根节点
             while(k*2+1<=end){
                 int j=2*k+1;
                 if(j<end){
@@ -49,7 +50,7 @@ public class MaxHeap extends Heap {
                         j++;
                     }
                 }
-                if(heap[k]<heap[j]){
+                if(heap[k]<heap[j]){//判断
                     swap(heap,k,j);
                     k=j;
                 }else{
@@ -64,9 +65,5 @@ public class MaxHeap extends Heap {
             adjust(arr, len - 1 - i);
             swap(arr, 0, len - i - 1);
         }
-    }
-    public static void main(String[] args){
-        int [] arr= {5,6,8,9,7};
-        Main.printArr(arr);
     }
 }
